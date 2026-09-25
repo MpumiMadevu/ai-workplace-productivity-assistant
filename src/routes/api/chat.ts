@@ -15,8 +15,9 @@ export const Route = createFileRoute("/api/chat")({
     handlers: {
       POST: async ({ request }) => {
         const { messages } = (await request.json()) as ChatBody;
-        if (!Array.isArray(messages)) return new Response("Messages are required.", { status: 400 });
-        const key = process.env['LOVABLE_API_KEY'];
+        if (!Array.isArray(messages))
+          return new Response("Messages are required.", { status: 400 });
+        const key = process.env["LOVABLE_API_KEY"];
         if (!key) return new Response("AI is not configured for this workspace.", { status: 500 });
 
         const initialRunId = getLovableAiGatewayRunId(request);
@@ -30,7 +31,8 @@ export const Route = createFileRoute("/api/chat")({
 
         const result = streamText({
           model: lovable.responses("openai/gpt-6-astra"),
-          system: "You are Workplace AI, a clear and dependable productivity assistant for South African professionals. Help with prioritisation, planning, meeting follow-ups, professional writing and practical workplace decisions. Be concise, specific and transparent about uncertainty. Never claim perfect accuracy. Do not request confidential, sensitive or personal information.",
+          system:
+            "You are Workplace AI, a clear and dependable productivity assistant for South African professionals. Help with prioritisation, planning, meeting follow-ups, professional writing and practical workplace decisions. Be concise, specific and transparent about uncertainty. Never claim perfect accuracy. Do not request confidential, sensitive or personal information.",
           messages: await convertToModelMessages(messages as UIMessage[]),
           providerOptions: {
             openai: {

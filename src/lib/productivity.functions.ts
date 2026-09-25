@@ -20,31 +20,35 @@ const meetingOutput = z.object({
   executiveSummary: z.string(),
   keyPoints: z.array(z.string()),
   decisions: z.array(z.string()),
-  actionItems: z.array(z.object({
-    action: z.string(),
-    responsible: z.string(),
-    deadline: z.string(),
-    status: z.string(),
-  })),
+  actionItems: z.array(
+    z.object({
+      action: z.string(),
+      responsible: z.string(),
+      deadline: z.string(),
+      status: z.string(),
+    }),
+  ),
   deadlines: z.array(z.string()),
   followUps: z.array(z.string()),
 });
 
 const planOutput = z.object({
   overview: z.string(),
-  schedule: z.array(z.object({
-    time: z.string(),
-    day: z.string(),
-    title: z.string(),
-    priority,
-    deadline: z.string(),
-    rationale: z.string(),
-  })),
+  schedule: z.array(
+    z.object({
+      time: z.string(),
+      day: z.string(),
+      title: z.string(),
+      priority,
+      deadline: z.string(),
+      rationale: z.string(),
+    }),
+  ),
   suggestions: z.array(z.string()),
 });
 
 function createModel() {
-  const key = process.env['LOVABLE_API_KEY'];
+  const key = process.env["LOVABLE_API_KEY"];
   if (!key) throw new Error("AI is not configured for this workspace.");
   const runIdFetch = createLovableAiGatewayRunIdFetch();
   const lovable = createOpenAI({
