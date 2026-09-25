@@ -418,9 +418,26 @@ function MeetingWorkspace({ onActivity }: { onActivity: (value: string) => void 
               {error}
             </p>
           )}
-          <Button onClick={submit} disabled={loading} className="h-11 w-full">
-            {loading ? "Analysing notes…" : "Summarise Notes"}
-          </Button>
+          <div className="flex gap-2">
+            <Button
+              variant="outline"
+              onClick={() => {
+                setTitle("");
+                setDate("");
+                setNotes("");
+                setError("");
+              }}
+              disabled={loading}
+              aria-label="Clear meeting inputs"
+              className="h-11"
+            >
+              <RotateCcw />
+              Clear
+            </Button>
+            <Button onClick={submit} disabled={loading} className="h-11 flex-1">
+              {loading ? "Analysing notes…" : "Summarise Notes"}
+            </Button>
+          </div>
         </div>
         <div className="mt-5">
           <ResponsibleNotice compact />
