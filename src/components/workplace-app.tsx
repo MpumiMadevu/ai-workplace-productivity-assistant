@@ -418,9 +418,26 @@ function MeetingWorkspace({ onActivity }: { onActivity: (value: string) => void 
               {error}
             </p>
           )}
-          <Button onClick={submit} disabled={loading} className="h-11 w-full">
-            {loading ? "Analysing notes…" : "Summarise Notes"}
-          </Button>
+          <div className="flex gap-2">
+            <Button
+              variant="outline"
+              onClick={() => {
+                setTitle("");
+                setDate("");
+                setNotes("");
+                setError("");
+              }}
+              disabled={loading}
+              aria-label="Clear meeting inputs"
+              className="h-11"
+            >
+              <RotateCcw />
+              Clear
+            </Button>
+            <Button onClick={submit} disabled={loading} className="h-11 flex-1">
+              {loading ? "Analysing notes…" : "Summarise Notes"}
+            </Button>
+          </div>
         </div>
         <div className="mt-5">
           <ResponsibleNotice compact />
@@ -614,19 +631,35 @@ function PlannerWorkspace({ onActivity }: { onActivity: (value: string) => void 
               <p className="section-label">TASK INPUT</p>
               <h2 className="mt-1 font-display text-xl font-semibold">What needs attention?</h2>
             </div>
-            <Button
-              size="icon"
-              variant="outline"
-              aria-label="Add task"
-              onClick={() =>
-                setTasks([
-                  ...tasks,
-                  { id: crypto.randomUUID(), title: "", deadline: "", priority: "Medium" },
-                ])
-              }
-            >
-              <Plus />
-            </Button>
+            <div className="flex gap-2">
+              <Button
+                size="icon"
+                variant="outline"
+                aria-label="Clear all task inputs"
+                onClick={() => {
+                  setTasks([
+                    { id: crypto.randomUUID(), title: "", deadline: "", priority: "High" },
+                  ]);
+                  setError("");
+                }}
+                disabled={loading}
+              >
+                <RotateCcw />
+              </Button>
+              <Button
+                size="icon"
+                variant="outline"
+                aria-label="Add task"
+                onClick={() =>
+                  setTasks([
+                    ...tasks,
+                    { id: crypto.randomUUID(), title: "", deadline: "", priority: "Medium" },
+                  ])
+                }
+              >
+                <Plus />
+              </Button>
+            </div>
           </div>
           <div className="mt-5 space-y-3">
             {tasks.map((task, index) => (
