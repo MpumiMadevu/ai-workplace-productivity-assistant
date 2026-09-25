@@ -631,19 +631,35 @@ function PlannerWorkspace({ onActivity }: { onActivity: (value: string) => void 
               <p className="section-label">TASK INPUT</p>
               <h2 className="mt-1 font-display text-xl font-semibold">What needs attention?</h2>
             </div>
-            <Button
-              size="icon"
-              variant="outline"
-              aria-label="Add task"
-              onClick={() =>
-                setTasks([
-                  ...tasks,
-                  { id: crypto.randomUUID(), title: "", deadline: "", priority: "Medium" },
-                ])
-              }
-            >
-              <Plus />
-            </Button>
+            <div className="flex gap-2">
+              <Button
+                size="icon"
+                variant="outline"
+                aria-label="Clear all task inputs"
+                onClick={() => {
+                  setTasks([
+                    { id: crypto.randomUUID(), title: "", deadline: "", priority: "High" },
+                  ]);
+                  setError("");
+                }}
+                disabled={loading}
+              >
+                <RotateCcw />
+              </Button>
+              <Button
+                size="icon"
+                variant="outline"
+                aria-label="Add task"
+                onClick={() =>
+                  setTasks([
+                    ...tasks,
+                    { id: crypto.randomUUID(), title: "", deadline: "", priority: "Medium" },
+                  ])
+                }
+              >
+                <Plus />
+              </Button>
+            </div>
           </div>
           <div className="mt-5 space-y-3">
             {tasks.map((task, index) => (
