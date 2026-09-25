@@ -154,19 +154,62 @@
     text-rendering: optimizeLegibility;
   }
 
-  button, input, textarea, select { letter-spacing: 0; }
+  button,
+  input,
+  textarea,
+  select {
+    letter-spacing: 0;
+  }
 }
 
 @layer components {
-  .section-label { color: var(--color-primary); font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em; }
-  .field-label { display: grid; gap: 0.45rem; color: var(--color-foreground); font-size: 0.78rem; font-weight: 600; }
-  .priority { display: inline-flex; min-height: 1.5rem; align-items: center; border-radius: 999px; padding: 0 0.5rem; font-size: 0.67rem; font-weight: 700; }
-  .priority-critical { background: oklch(0.92 0.045 25); color: oklch(0.48 0.18 25); }
-  .priority-high { background: oklch(0.93 0.055 75); color: oklch(0.47 0.13 60); }
-  .priority-medium { background: oklch(0.9 0.04 153); color: oklch(0.4 0.1 153); }
-  .priority-low { background: oklch(0.91 0.015 250); color: oklch(0.43 0.035 250); }
+  .section-label {
+    color: var(--color-primary);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+  }
+  .field-label {
+    display: grid;
+    gap: 0.45rem;
+    color: var(--color-foreground);
+    font-size: 0.78rem;
+    font-weight: 600;
+  }
+  .priority {
+    display: inline-flex;
+    min-height: 1.5rem;
+    align-items: center;
+    border-radius: 999px;
+    padding: 0 0.5rem;
+    font-size: 0.67rem;
+    font-weight: 700;
+  }
+  .priority-critical {
+    background: oklch(0.92 0.045 25);
+    color: oklch(0.48 0.18 25);
+  }
+  .priority-high {
+    background: oklch(0.93 0.055 75);
+    color: oklch(0.47 0.13 60);
+  }
+  .priority-medium {
+    background: oklch(0.9 0.04 153);
+    color: oklch(0.4 0.1 153);
+  }
+  .priority-low {
+    background: oklch(0.91 0.015 250);
+    color: oklch(0.43 0.035 250);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { scroll-behavior: auto !important; transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; }
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
 }
